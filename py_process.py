@@ -80,6 +80,7 @@ class _TFProxy(object):
       flat_shapes = nest.flatten(nest.map_structure(lambda s: s.shape, specs))
 
       def py_call(*args):
+        args = [i.decode("utf-8") if isinstance(i, bytes) else i for i in args]
         try:
           self._out.send(args)
           result = self._out.recv()

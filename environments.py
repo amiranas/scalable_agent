@@ -26,6 +26,7 @@ import tensorflow as tf
 
 import deepmind_lab
 
+from six import iteritems
 
 nest = tf.contrib.framework.nest
 
@@ -72,7 +73,7 @@ class PyProcessDmLab(object):
     self._random_state = np.random.RandomState(seed=seed)
     if runfiles_path:
       deepmind_lab.set_runfiles_path(runfiles_path)
-    config = {k: str(v) for k, v in config.iteritems()}
+    config = {k: str(v) for k, v in iteritems(config)}
     self._observation_spec = ['RGB_INTERLEAVED', 'INSTR']
     self._env = deepmind_lab.Lab(
         level=level,

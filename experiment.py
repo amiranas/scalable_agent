@@ -612,16 +612,16 @@ def train(action_set, level_names):
                             level_name, episode_return)
 
             summary = tf.summary.Summary()
-            summary.value.add(tag=level_name + '/episode_return',
+            summary.value.add(tag=level_name + b'/episode_return',
                               simple_value=episode_return)
-            summary.value.add(tag=level_name + '/episode_frames',
+            summary.value.add(tag=level_name + b'/episode_frames',
                               simple_value=episode_frames)
             summary_writer.add_summary(summary, num_env_frames_v)
 
-            if FLAGS.level_name == 'dmlab30':
+            if FLAGS.level_name == b'dmlab30':
               level_returns[level_name].append(episode_return)
 
-          if (FLAGS.level_name == 'dmlab30' and
+          if (FLAGS.level_name == b'dmlab30' and
               min(map(len, level_returns.values())) >= 1):
             no_cap = dmlab30.compute_human_normalized_score(level_returns,
                                                             per_level_cap=None)
