@@ -684,9 +684,9 @@ def main(_):
 
   action_set = environments.DEFAULT_ACTION_SET
   if FLAGS.level_name == 'dmlab30' and FLAGS.mode == 'train':
-    level_names = dmlab30.LEVEL_MAPPING.keys()
+    level_names = list(dmlab30.LEVEL_MAPPING.keys())  # convert to list for python 3
   elif FLAGS.level_name == 'dmlab30' and FLAGS.mode == 'test':
-    level_names = dmlab30.LEVEL_MAPPING.values()
+    level_names = list(dmlab30.LEVEL_MAPPING.values())  # convert to list for python 3
   else:
     level_names = [FLAGS.level_name]
 
